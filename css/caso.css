@@ -383,3 +383,20 @@ img[data-par]{--sc:1.08}
 .b-vm-chiaro{background:#fff;color:#0a0a0a}
 .b-vm-chiaro .vm-lab b{color:var(--vm-arancio)}
 .b-vm-chiaro .vm-cam{color:#0a0a0a}
+
+/* caratteri: ogni gruppo di lettere resta su una sola riga (maiuscole, minuscole, numeri) */
+.font-voce .abc{white-space:nowrap;overflow-wrap:normal}
+.font-luxurious>div{gap:14px}
+@media (max-width:700px){
+  .font-voce{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:12px;align-items:center}
+  .font-voce>div{display:contents}
+  .font-voce .aa{grid-column:1;grid-row:1}
+  .font-voce b{grid-column:2;grid-row:1}
+  .font-voce .abc{grid-column:1 / -1;grid-row:2;font-size:clamp(9px,2.8vw,11.5px)}
+  .font-voce small{grid-column:1 / -1;grid-row:3}
+  .font-luxurious .abc{font-size:clamp(11px,3.4vw,14px)}
+}
+
+.b-vm-mock{aspect-ratio:3/2;background:#050505}
+.b-vm-mock img{object-position:50% 50%}
+.b-fascia>.cont img{aspect-ratio:1481/222;width:100%;height:auto}

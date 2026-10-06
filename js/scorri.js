@@ -48,6 +48,11 @@
   var oggetti = {};
   gruppi.forEach(function (g) {
     var soglia = parseFloat(g.getAttribute('data-soglia')) || 0;
+    // se il contenitore e' molto alto (telefono, riquadri impilati) la soglia si abbassa: parte quando se ne vede mezza schermata
+    if (soglia) {
+      var alt = g.getBoundingClientRect().height || 1;
+      soglia = Math.round(Math.max(0.05, Math.min(soglia, (window.innerHeight * 0.22) / alt)) * 100) / 100;
+    }
     var o = oggetti[soglia] || (oggetti[soglia] = creaGruppi(soglia));
     o.observe(g);
   });

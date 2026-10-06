@@ -217,29 +217,27 @@ a{color:inherit}
 }
 .lavori-pagina h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--vino);text-align:center}
 .lavori-griglia{list-style:none;margin:0;padding:0;width:100%;max-width:800px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-@property --logo{syntax:'<color>';inherits:true;initial-value:#3A0F1E}
-@property --fondo{syntax:'<color>';inherits:true;initial-value:#E8D5DA}
 .lavoro{
   --logo:var(--vino);--fondo:var(--cipria);
   position:relative;height:100%;aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;
   padding:18px;border-radius:20px;background:var(--fondo);color:var(--logo);text-decoration:none;overflow:hidden;
-  transition:transform .3s cubic-bezier(.2,.8,.2,1),--logo .3s ease,--fondo .3s ease,box-shadow .3s ease;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .3s ease,color .3s ease,box-shadow .3s ease;
 }
 .logo-slot{flex:1;min-height:0;display:grid;place-items:center;padding-top:34px}
 .logo-slot .lg{width:72%;height:100%;display:block;overflow:visible}
 /* icone disegnate per categoria: tratto uniforme, colore = --logo */
-.lg{fill:none;stroke:var(--logo);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.lg{fill:none;stroke:var(--logo);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s ease}
 .lg *{transform-box:fill-box;transform-origin:center}
 .lg .centra{transform-box:view-box;transform-origin:0 0}
-.lg .play{fill:var(--logo)}
-.lg .cuore{fill:var(--logo)}
+.lg .play{fill:var(--logo);transition:fill .3s ease}
+.lg .cuore{fill:var(--logo);transition:fill .3s ease}
 @media (prefers-reduced-motion:no-preference){
   /* ristorante: il vapore sale, il coperchio ha un piccolo saltello */
   .ic-ristorante .vapore path{animation:vapore 2.6s ease-in-out infinite}
   .ic-ristorante .v2{animation-delay:.5s!important}.ic-ristorante .v3{animation-delay:1s!important}
   .ic-ristorante .coperchio{animation:coperchio 2.4s ease-in-out infinite}
   @keyframes vapore{0%{opacity:0;transform:translateY(5px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
-  @keyframes coperchio{0%,15%,100%{transform:translate(0,0) rotate(0)}40%,60%{transform:translate(8px,-7px) rotate(14deg)}85%{transform:translate(0,0) rotate(0)}}
+  @keyframes coperchio{0%,15%,100%{transform:translate(0,0) rotate(0)}40%,60%{transform:translate(10px,-1px) rotate(16deg)}85%{transform:translate(0,0) rotate(0)}}
   /* associazione: il cuore batte */
   .ic-associazione .cuore{animation:batti 1.8s ease-in-out infinite}
   @keyframes batti{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}60%{transform:scale(1)}}
@@ -428,3 +426,12 @@ html.menu-aperto{overflow:hidden}
 .chisono .scheda{justify-items:center}
 .chisono .tag,.chisono .azioni{justify-content:center}
 @media (max-width:700px){.chisono{padding-block:140px 120px;min-height:0}}
+
+/* pagina lavori da telefono: i riquadri entrano dai lati, uno a sinistra e uno a destra */
+@media (max-width:700px) and (prefers-reduced-motion:no-preference){
+  .lavori-griglia li:nth-child(odd){animation:entra-sx .8s cubic-bezier(.2,.8,.2,1) backwards}
+  .lavori-griglia li:nth-child(even){animation:entra-dx .8s cubic-bezier(.2,.8,.2,1) backwards}
+  .lavori-griglia li:nth-child(3){animation-delay:.16s}.lavori-griglia li:nth-child(4){animation-delay:.24s}
+  @keyframes entra-sx{from{opacity:0;transform:translateX(-70px)}to{opacity:1;transform:none}}
+  @keyframes entra-dx{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:none}}
+}
