@@ -1,0 +1,441 @@
+/* Francesca Il Grande - stile condiviso da tutte le pagine
+   Base panna, accento vino scuro. Carrello: orizzontale su desktop, verticale su mobile. */
+:root{
+  --panna:#F7F2E8;
+  --panna-scuro:#EDE5D4;
+  --vino:#3A0F1E;
+  --vino-profondo:#250912;
+  --vino-rosso:#8A1B2C;
+  --cipria:#E8D5DA;
+  --testo:#2A1A1F;
+  --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --corpo:'DM Sans','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0;min-height:100%;background:var(--panna);color:var(--testo);
+  font-family:var(--corpo);font-size:16px;line-height:1.55;
+  padding-inline:20px;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--vino);outline-offset:4px;border-radius:6px}
+
+/* ---------- struttura pagina ---------- */
+.pagina{
+  min-height:100svh;max-width:960px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;padding-block:0;gap:0;
+}
+/* logo: monogramma + nome in un unico blocco centrato.
+   Il nome usa un Didone (Bodoni Moda) come il monogramma: alto contrasto, grazie sottili, maiuscole spaziate. */
+.logo{
+  --fs:clamp(14px,1.2vw,16.5px);--tot:1.3s;
+  position:absolute;top:28px;left:0;right:0;margin-inline:auto;width:max-content;
+  display:flex;align-items:center;gap:calc(var(--fs) * 1.1);text-decoration:none;color:var(--vino);
+}
+.logo .mono{height:calc(var(--fs) * 3.6);width:auto;display:block;overflow:visible}
+.logo .nome{display:grid;gap:calc(var(--fs) * .5);font-family:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;font-optical-sizing:auto}
+.logo .n1{font-size:calc(var(--fs) * 1.1);font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.14}
+.logo .n2{font-size:calc(var(--fs) * .64);font-weight:500;letter-spacing:.27em;text-transform:uppercase;line-height:1;
+  padding-top:calc(var(--fs) * .5);border-top:1px solid color-mix(in srgb,currentColor 45%,transparent)}
+.logo .pieno{fill:currentColor;stroke:currentColor;stroke-width:.75;stroke-linejoin:round}
+.logo .cont{fill:none;stroke:currentColor;stroke-width:1.2;stroke-linejoin:round;opacity:0}
+.logo .acqua{display:none}
+/* apertura della home: il monogramma si riempie d'acqua dal basso verso l'alto */
+.js .logo .pieno{opacity:0}
+.js .logo .cont{opacity:.55}
+.js .logo .acqua{display:inline;transform:translateY(190px)}
+.js .logo .onda1{fill:currentColor;animation:scorri 1.5s linear infinite}
+.js .logo .onda2{fill:currentColor;opacity:.4;animation:scorri 2.3s linear infinite reverse}
+@keyframes scorri{to{transform:translateX(-120px)}}
+.js .logo.scrive .acqua{animation:salita 1.2s cubic-bezier(.4,.05,.25,1) .1s forwards}
+@keyframes salita{to{transform:translateY(54px)}}
+.js .logo.fatto .pieno{opacity:1}
+.js .logo.fatto .cont,.js .logo.fatto .acqua{display:none}
+.centro{flex:1;display:grid;place-items:center;width:100%;padding-block:130px}
+
+/* ---------- carrello ---------- */
+.carrello{
+  position:relative;width:min(560px,80vw,calc((100svh - 280px) * 1.286));aspect-ratio:1125/875;
+  container-type:inline-size;
+}
+.carrello picture,.carrello img.cesto{position:absolute;inset:0;width:100%;height:100%;display:block}
+.carrello img.cesto{filter:url(#tinta-vino);pointer-events:none;user-select:none}
+
+.pillola,.logo-app{
+  position:absolute;left:var(--x);top:var(--y);
+  transform:translate(-50%,-50%) rotate(var(--r,0deg));
+  translate:calc(var(--mx,0) * var(--d,0) * 1px) calc(var(--my,0) * var(--d,0) * 1px);
+}
+.carrello.in .pillola,.carrello.in .logo-app{
+  animation:cade .7s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--ritardo,0s) + .5s);
+}
+.pillola{
+  display:inline-flex;align-items:center;white-space:nowrap;text-decoration:none;
+  font-family:var(--display);font-weight:700;letter-spacing:-.01em;
+  font-size:4.6cqw;padding:.8em 1.5em;border-radius:999px;
+  background:var(--vino);color:var(--panna);
+  box-shadow:0 .5cqw 1.4cqw -.4cqw rgba(37,9,18,.45);
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+.pillola.chiara{background:var(--cipria);color:var(--vino)}
+.pillola.bordo{background:var(--panna);color:var(--vino);box-shadow:inset 0 0 0 .35cqw var(--vino),0 .5cqw 1.4cqw -.4cqw rgba(37,9,18,.35)}
+.pillola:hover{transform:translate(-50%,-50%) rotate(0deg) scale(1.06)}
+.freccia{
+  width:0;height:1em;margin-left:0;opacity:0;flex:none;overflow:visible;
+  transform:translateX(-.6em);
+  transition:width .35s cubic-bezier(.2,.8,.2,1),margin-left .35s cubic-bezier(.2,.8,.2,1),opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.freccia path{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .4s ease .08s}
+.pillola:hover .freccia,.pillola:focus-visible .freccia{width:1.05em;margin-left:.5em;opacity:1;transform:none}
+.pillola:hover .freccia path,.pillola:focus-visible .freccia path{stroke-dashoffset:0}
+.logo-app{width:12.5cqw;height:12.5cqw;pointer-events:none;filter:drop-shadow(0 .5cqw .8cqw rgba(37,9,18,.3))}
+.logo-app svg{width:100%;height:100%;display:block}
+
+/* posizioni dentro il carrello orizzontale */
+.p-lavori{--x:42%;--y:36%;--r:-6deg;--d:6;--ritardo:.05s}
+.p-chisono{--x:60%;--y:51%;--r:5deg;--d:9;--ritardo:.15s}
+.p-cosa{--x:41%;--y:66%;--r:-3deg;--d:5;--ritardo:.25s}
+.a-ps{--x:26%;--y:55%;--r:-9deg;--d:12;--ritardo:.3s}
+.a-ai{--x:75%;--y:35%;--r:7deg;--d:10;--ritardo:.38s}
+.a-id{--x:74%;--y:68%;--r:11deg;--d:8;--ritardo:.46s}
+
+@keyframes cade{from{opacity:0;margin-top:-14cqw}to{opacity:1;margin-top:0}}
+
+/* ---------- WhatsApp ---------- */
+.whatsapp{
+  position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));
+  width:56px;height:56px;border-radius:50%;display:block;
+  box-shadow:0 10px 24px -10px rgba(37,9,18,.6);
+  transition:transform .2s ease;
+}
+.whatsapp svg{width:100%;height:100%;display:block}
+.whatsapp:hover{transform:scale(1.08)}
+
+/* ---------- copyright ---------- */
+.copy{
+  position:fixed;left:max(20px,env(safe-area-inset-left));
+  bottom:calc(max(20px,env(safe-area-inset-bottom)) + 18px);margin:0;
+  font-size:12px;line-height:1;letter-spacing:.02em;color:var(--vino);opacity:.7;
+}
+.js .copy{opacity:0}
+.js.fine .copy{opacity:.7;transition:opacity .6s ease}
+
+/* ---------- pagine interne (provvisorie) ---------- */
+.contenuto{max-width:56ch;display:grid;gap:14px;justify-items:start;padding-block:12px}
+.contenuto h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,56px);line-height:1;letter-spacing:-.03em;margin:0;color:var(--vino)}
+.contenuto p{margin:0;opacity:.8}
+.indietro{display:inline-flex;gap:10px;align-items:center;padding:10px 18px;border-radius:999px;background:var(--vino);color:var(--panna);text-decoration:none;font-weight:700;font-size:14px}
+
+/* ---------- pagina Chi sono ---------- */
+.pagina-testo{min-height:100svh;justify-content:center}
+.pagina-testo .copy{position:absolute;left:calc(50% - 50vw + 20px);bottom:38px}
+.chisono{
+  width:100%;max-width:980px;margin:0 auto;padding-block:150px;
+  --gap:clamp(28px,6vw,72px);
+  display:grid;grid-template-columns:repeat(2,calc((100% - var(--gap)) * 5 / 11));justify-content:center;gap:var(--gap);align-items:center;
+}
+.foto{
+  aspect-ratio:4/5;border-radius:22px;position:relative;overflow:hidden;display:grid;place-items:end start;padding:18px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 23px,rgba(58,15,30,.16) 23px 25px),
+    repeating-linear-gradient(0deg,transparent 0 23px,rgba(58,15,30,.16) 23px 25px),
+    var(--cipria);
+}
+.foto span{font-size:13px;font-weight:700;color:var(--vino);background:var(--panna);padding:8px 14px;border-radius:999px}
+.testo{display:grid;gap:14px;justify-items:start;min-width:0;container-type:inline-size}
+.testo h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,9.2cqw,44px);line-height:1;white-space:nowrap;letter-spacing:-.035em;margin:0;color:var(--vino);text-wrap:balance}
+.testo .lead{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.4vw,26px);margin:0;color:var(--vino);opacity:.8}
+.testo p{margin:0;max-width:52ch}
+.segnaposto{opacity:.65;font-style:italic}
+.scheda{display:grid;gap:10px;margin-top:6px}
+.scheda h2{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--vino);opacity:.75;font-family:var(--corpo);font-weight:700}
+.tag{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tag li{display:inline-flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border-radius:999px;background:var(--cipria);color:var(--vino);font-weight:700;font-size:14px}
+.tag-semplici li{padding:8px 16px}
+.tag li svg{width:26px;height:26px;display:block;flex:none}
+.azioni{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.ico-carrello{width:30px;height:22px;flex:none;display:block;transition:transform .25s ease}
+.btn-bordo:hover .ico-carrello,.indietro:hover .ico-carrello{transform:rotate(-10deg)}
+.btn-pieno,.btn-bordo{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;white-space:nowrap;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;transition:transform .2s ease}
+.btn-pieno{background:var(--vino);color:var(--panna)}
+.btn-pieno svg{width:1.1em;height:1.1em;transition:transform .25s ease}
+.btn-pieno:hover svg{transform:translateX(4px)}
+.btn-bordo{box-shadow:inset 0 0 0 1.5px var(--vino);color:var(--vino)}
+.btn-pieno:hover,.btn-bordo:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:no-preference){
+  .chisono .foto,.chisono .testo>*{animation:sale .7s cubic-bezier(.2,.8,.2,1) both}
+  .testo>*:nth-child(2){animation-delay:.06s}.testo>*:nth-child(3){animation-delay:.12s}.testo>*:nth-child(4){animation-delay:.18s}.testo>*:nth-child(5){animation-delay:.24s}.testo>*:nth-child(6){animation-delay:.3s}
+  @keyframes sale{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- pagina Cosa faccio ---------- */
+.cosa{
+  width:100%;max-width:980px;margin:0 auto;padding-block:150px;
+  --gap:clamp(28px,6vw,72px);
+  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--gap);align-items:center;
+}
+.intro{display:grid;gap:14px;justify-items:start;container-type:inline-size}
+.intro h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,15cqw,68px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--vino);white-space:nowrap}
+.intro .lead{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.2vw,22px);margin:0;color:var(--vino);opacity:.8}
+.intro .azioni{margin-top:10px}
+.servizi{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:14px}
+.servizio{background:var(--cipria);border-radius:20px;padding:20px;display:grid;gap:14px;align-content:start;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.servizio .ico{width:42px;height:42px;border-radius:50%;background:var(--vino);color:var(--panna);display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.servizio .ico svg{width:22px;height:22px;display:block}
+.servizio h2{margin:0 0 4px;font-family:var(--display);font-weight:700;font-size:18px;line-height:1.15;letter-spacing:-.01em;color:var(--vino)}
+.servizio p{margin:0;font-size:14px;line-height:1.45;opacity:.82}
+/* icone: movimento leggero e continuo, diverso per ognuna */
+@media (prefers-reduced-motion:no-preference){
+  .servizio .ico svg{overflow:visible}
+  .servizio .ico circle,.servizio .ico svg{transform-box:fill-box;transform-origin:center}
+  /* 1 loghi: i due cerchi si avvicinano e si allontanano */
+  .servizio:nth-child(1) .ico circle:nth-child(1){animation:cerchioA 3.2s ease-in-out infinite}
+  .servizio:nth-child(1) .ico circle:nth-child(2){animation:cerchioB 3.2s ease-in-out infinite}
+  @keyframes cerchioA{0%,100%{transform:translateX(-1.6px)}50%{transform:translateX(1.4px)}}
+  @keyframes cerchioB{0%,100%{transform:translateX(1.6px)}50%{transform:translateX(-1.4px)}}
+  /* 2 packaging: la scatola sale e scende */
+  .servizio:nth-child(2) .ico svg{animation:rimbalzo 2.6s ease-in-out infinite .4s}
+  @keyframes rimbalzo{0%,100%{transform:translateY(1.2px)}50%{transform:translateY(-1.6px) rotate(-4deg)}}
+  /* 3 social: il telefono dondola */
+  .servizio:nth-child(3) .ico svg{animation:dondolo 3s ease-in-out infinite .8s}
+  @keyframes dondolo{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+  /* 4 materiali: il foglio ondeggia piano */
+  .servizio:nth-child(4) .ico svg{animation:ondeggia 3.4s ease-in-out infinite 1.2s}
+  @keyframes ondeggia{0%,100%{transform:translateY(1px) rotate(3deg)}50%{transform:translateY(-1.4px) rotate(-3deg)}}
+}
+
+/* al passaggio del mouse (solo dove c'e' un mouse) */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .servizio:hover{transform:translateY(-5px) rotate(-.8deg);box-shadow:0 18px 30px -18px rgba(37,9,18,.45)}
+  .servizio:hover .ico{transform:scale(1.14) rotate(-8deg)}
+  .servizio:hover .ico svg,.servizio:hover .ico circle{animation-duration:1.2s}
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .cosa .intro,.cosa .servizio{animation:sale .7s cubic-bezier(.2,.8,.2,1) backwards}
+  .servizio:nth-child(2){animation-delay:.08s}.servizio:nth-child(3){animation-delay:.16s}.servizio:nth-child(4){animation-delay:.24s}
+}
+
+/* ---------- elenco lavori: titolo in alto, 4 riquadri sotto ---------- */
+.lavori-pagina{
+  width:100%;max-width:980px;margin:0 auto;padding-block:150px;
+  display:grid;gap:34px;justify-items:center;align-content:center;min-height:100svh;
+}
+.lavori-pagina h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--vino);text-align:center}
+.lavori-griglia{list-style:none;margin:0;padding:0;width:100%;max-width:800px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@property --logo{syntax:'<color>';inherits:true;initial-value:#3A0F1E}
+@property --fondo{syntax:'<color>';inherits:true;initial-value:#E8D5DA}
+.lavoro{
+  --logo:var(--vino);--fondo:var(--cipria);
+  position:relative;height:100%;aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;
+  padding:18px;border-radius:20px;background:var(--fondo);color:var(--logo);text-decoration:none;overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),--logo .3s ease,--fondo .3s ease,box-shadow .3s ease;
+}
+.logo-slot{flex:1;min-height:0;display:grid;place-items:center;padding-top:34px}
+.logo-slot .lg{width:72%;height:100%;display:block;overflow:visible}
+/* icone disegnate per categoria: tratto uniforme, colore = --logo */
+.lg{fill:none;stroke:var(--logo);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.lg *{transform-box:fill-box;transform-origin:center}
+.lg .centra{transform-box:view-box;transform-origin:0 0}
+.lg .play{fill:var(--logo)}
+.lg .cuore{fill:var(--logo)}
+@media (prefers-reduced-motion:no-preference){
+  /* ristorante: il vapore sale, il coperchio ha un piccolo saltello */
+  .ic-ristorante .vapore path{animation:vapore 2.6s ease-in-out infinite}
+  .ic-ristorante .v2{animation-delay:.5s!important}.ic-ristorante .v3{animation-delay:1s!important}
+  .ic-ristorante .coperchio{animation:coperchio 2.4s ease-in-out infinite}
+  @keyframes vapore{0%{opacity:0;transform:translateY(5px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+  @keyframes coperchio{0%,15%,100%{transform:translate(0,0) rotate(0)}40%,60%{transform:translate(8px,-7px) rotate(14deg)}85%{transform:translate(0,0) rotate(0)}}
+  /* associazione: il cuore batte */
+  .ic-associazione .cuore{animation:batti 1.8s ease-in-out infinite}
+  @keyframes batti{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}60%{transform:scale(1)}}
+  /* videomaker: il ciak si apre e si chiude */
+  .ic-videomaker .ciak{transform-origin:left bottom;animation:ciak 3s ease-in-out infinite}
+  .ic-videomaker .play{animation:play 3s ease-in-out infinite}
+  @keyframes ciak{0%,55%,100%{transform:rotate(0)}25%{transform:rotate(-14deg)}62%{transform:rotate(0)}}
+  @keyframes play{0%,55%,100%{transform:scale(1)}65%{transform:scale(1.18)}}
+  /* agenzia: il megafono suona, le onde si accendono una dopo l'altra */
+  .ic-agenzia .onda{animation:onda 2s ease-in-out infinite}
+  .ic-agenzia .o2{animation-delay:.25s}.ic-agenzia .o3{animation-delay:.5s}
+  .ic-agenzia .megafono{animation:suona 2s ease-in-out infinite}
+  @keyframes onda{0%,100%{opacity:.2}40%{opacity:1}}
+  @keyframes suona{0%,100%{transform:rotate(0)}20%{transform:rotate(-3deg)}40%{transform:rotate(2deg)}}
+}
+.lavoro .nome{font-family:var(--display);font-weight:800;font-size:clamp(15px,1.6vw,19px);line-height:1.05;letter-spacing:-.02em}
+.freccia-lavoro{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:var(--logo);color:var(--fondo);display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .25s,color .25s}
+.freccia-lavoro svg{width:15px;height:15px;display:block}
+@media (hover:hover){
+  .lavoro:hover{--logo:var(--cipria);--fondo:var(--vino);transform:translateY(-4px);box-shadow:0 18px 30px -18px rgba(37,9,18,.5)}
+  .lavoro:hover .freccia-lavoro{transform:rotate(45deg)}
+}
+.lavoro:focus-visible{outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){
+  .lavori-pagina>*,.lavori-griglia li{animation:sale .7s cubic-bezier(.2,.8,.2,1) backwards}
+  .lavori-griglia li:nth-child(2){animation-delay:.08s}.lavori-griglia li:nth-child(3){animation-delay:.16s}.lavori-griglia li:nth-child(4){animation-delay:.24s}
+}
+
+/* pulsante "Torna al carrello" della pagina lavori: piu' grande e un po' piu' in basso */
+.lavori-pagina>.btn-bordo{margin-top:18px;font-size:16px;padding:14px 24px;gap:10px}
+.lavori-pagina>.btn-bordo .ico-carrello{width:36px;height:26px}
+
+/* ---------- mobile: carrello verticale, piccolo ---------- */
+@media (max-width:700px){
+  .cosa{grid-template-columns:1fr;padding-block:140px 120px}
+  .servizi{grid-template-columns:1fr}
+  .lavori-pagina{padding-block:140px 120px;min-height:0}
+  .lavori-griglia{grid-template-columns:1fr 1fr;max-width:300px}
+  .lavoro{padding:14px}
+  .servizio{grid-template-columns:42px 1fr;align-items:start;gap:14px}
+  .intro h1{font-size:44px}
+  .chisono{grid-template-columns:1fr;padding-block:140px 120px}
+  .foto{max-width:320px}
+  .azioni{justify-content:center;width:100%;gap:8px}
+  .btn-pieno,.btn-bordo{font-size:12.5px;padding:10px 11px;gap:6px}
+  .ico-carrello{width:26px;height:19px}
+  .copy{bottom:calc(max(20px,env(safe-area-inset-bottom)) + 18px);font-size:11px}
+  .carrello{width:min(280px,72vw);aspect-ratio:875/1125}
+  .pillola{font-size:7.2cqw;padding:.75em 1.4em}
+  .logo-app{width:19cqw;height:19cqw}
+  .p-lavori{--x:45%;--y:28%;--r:-6deg}
+  .p-chisono{--x:50%;--y:46%;--r:5deg}
+  .p-cosa{--x:48%;--y:63%;--r:-4deg}
+  .a-ps{--x:27%;--y:76%;--r:-9deg}
+  .a-ai{--x:77%;--y:37%;--r:8deg}
+  .a-id{--x:71%;--y:76%;--r:10deg}
+  @keyframes cade{from{opacity:0;margin-top:-20cqw}to{opacity:1;margin-top:0}}
+}
+/* ---------- apertura animata (solo se JS attivo, solo home) ---------- */
+.js .carrello:not(.in){opacity:0}
+.js .carrello:not(.in) .pillola,.js .carrello:not(.in) .logo-app{opacity:0}
+.carrello.in{animation:carrelloEntra .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes carrelloEntra{from{opacity:0;transform:translateY(5vh) scale(.94)}to{opacity:1;transform:none}}
+.js .whatsapp{opacity:0;pointer-events:none}
+.js.fine .whatsapp{opacity:1;pointer-events:auto;transition:opacity .6s ease,transform .2s ease}
+.js .logo{opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  .carrello.in{animation:none}
+  .carrello.in .pillola,.carrello.in .logo-app{animation:none}
+  .pillola,.whatsapp,.freccia,.freccia path{transition:none}
+}
+
+/* ---------- menu hamburger ---------- */
+.menu-btn{
+  position:fixed;top:max(18px,env(safe-area-inset-top));right:max(18px,env(safe-area-inset-right));z-index:100;
+  width:48px;height:48px;border:0;border-radius:50%;padding:0;cursor:pointer;
+  background:var(--panna);color:var(--vino);box-shadow:inset 0 0 0 1.5px var(--vino);
+  transition:transform .25s ease,background .3s ease,color .3s ease,box-shadow .3s ease;
+}
+.menu-btn span{position:absolute;left:50%;top:50%;width:20px;height:2px;margin:-1px 0 0 -10px;border-radius:2px;background:currentColor;transition:transform .45s cubic-bezier(.7,0,.2,1),width .3s ease}
+.menu-btn span:nth-child(1){transform:translateY(-4px)}
+.menu-btn span:nth-child(2){transform:translateY(4px)}
+.menu-btn:focus-visible{outline:2px solid var(--vino);outline-offset:3px}
+@media (hover:hover){
+  .menu-btn:hover{background:var(--vino);color:var(--panna);transform:scale(1.06)}
+  .menu-btn:hover span:nth-child(2){transform:translateY(4px) scaleX(.7)}
+}
+.menu-btn.aperto{background:var(--panna);color:var(--vino);box-shadow:none}
+.menu-btn.aperto span:nth-child(1){transform:rotate(45deg)}
+.menu-btn.aperto span:nth-child(2){transform:rotate(-45deg)}
+.js .menu-btn{opacity:0;pointer-events:none}
+.js.fine .menu-btn{opacity:1;pointer-events:auto;transition:opacity .6s ease,transform .25s ease,background .3s ease,color .3s ease,box-shadow .3s ease}
+
+.menu-pannello{
+  position:fixed;inset:0;z-index:90;background:var(--vino);color:var(--panna);
+  display:grid;align-content:center;justify-items:start;padding:80px clamp(28px,9vw,140px);
+  clip-path:circle(0 at calc(100% - 42px) 42px);visibility:hidden;
+  transition:clip-path .7s cubic-bezier(.7,0,.2,1),visibility 0s linear .7s;
+}
+.menu-pannello.aperto{clip-path:circle(150vmax at calc(100% - 42px) 42px);visibility:visible;transition:clip-path .85s cubic-bezier(.7,0,.2,1)}
+.menu-pannello ul{list-style:none;margin:0;padding:0;width:min(620px,100%)}
+.menu-pannello li{border-bottom:1px solid rgba(247,242,232,.18);opacity:0;transform:translateY(26px);transition:opacity .4s ease,transform .4s ease}
+.menu-pannello li:first-child{border-top:1px solid rgba(247,242,232,.18)}
+.menu-pannello.aperto li{opacity:1;transform:none;transition:opacity .7s ease calc(.3s + var(--i) * .09s),transform .8s cubic-bezier(.2,.8,.2,1) calc(.3s + var(--i) * .09s)}
+.menu-pannello a{
+  display:flex;align-items:center;gap:16px;padding:clamp(14px,2.6vw,22px) 4px;color:var(--panna);text-decoration:none;
+  font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,52px);line-height:1.05;letter-spacing:-.03em;
+  transition:color .25s ease,transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.menu-pannello a span{flex:1}
+.menu-pannello .ico-carrello{width:clamp(38px,5vw,54px);height:auto;flex:none;transition:transform .3s ease}
+.menu-freccia{width:.6em;height:.6em;flex:none;opacity:.5;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s ease}
+.menu-pannello a:focus-visible{outline:2px solid var(--cipria);outline-offset:2px;border-radius:8px}
+@media (hover:hover){
+  .menu-pannello a:hover{color:var(--cipria);transform:translateX(8px)}
+  .menu-pannello a:hover .menu-freccia{transform:translateX(6px);opacity:1}
+  .menu-pannello a:hover .ico-carrello{transform:rotate(-10deg)}
+}
+.menu-copy{position:absolute;left:clamp(28px,9vw,140px);bottom:max(26px,env(safe-area-inset-bottom));margin:0;font-size:12px;letter-spacing:.04em;opacity:.55}
+html.menu-aperto{overflow:hidden}
+.js.menu-aperto .whatsapp{opacity:0;pointer-events:none}
+@media (max-width:700px){.menu-btn{width:44px;height:44px;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right))}
+  .menu-pannello{clip-path:circle(0 at calc(100% - 36px) 36px)}.menu-pannello.aperto{clip-path:circle(150vmax at calc(100% - 36px) 36px)}}
+@media (prefers-reduced-motion:reduce){
+  .menu-pannello,.menu-pannello.aperto,.menu-pannello li,.menu-pannello.aperto li,.menu-btn span{transition:none}
+}
+
+/* freccia indietro (pagine dei singoli lavori), in alto a sinistra */
+.menu-indietro{
+  position:fixed;top:max(18px,env(safe-area-inset-top));left:max(18px,env(safe-area-inset-left));z-index:80;
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  background:var(--panna);color:var(--vino);box-shadow:inset 0 0 0 1.5px var(--vino);text-decoration:none;
+  transition:transform .25s ease,background .3s ease,color .3s ease,opacity .3s ease;
+}
+.menu-indietro svg{width:22px;height:22px;display:block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.menu-indietro:focus-visible{outline:2px solid var(--vino);outline-offset:3px}
+@media (hover:hover){
+  .menu-indietro:hover{background:var(--vino);color:var(--panna);transform:scale(1.06)}
+  .menu-indietro:hover svg{transform:translateX(-3px)}
+}
+.menu-aperto .menu-indietro{opacity:0;pointer-events:none}
+@media (max-width:700px){.menu-indietro{width:44px;height:44px;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left))}}
+
+
+/* foto di Francesca: sta tutta dentro il riquadro, appoggiata in basso */
+.foto{container-type:inline-size}
+.foto-in{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.foto img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 61%;transform:translateY(3cqw) scale(1.14);transform-origin:50% 100%}
+
+/* Chi sono: prima compare il riquadro della foto, poi Francesca sale dentro al riquadro */
+@media (prefers-reduced-motion:no-preference){
+  .chisono .foto{animation:foto-riquadro .8s cubic-bezier(.2,.8,.2,1) both}
+  .chisono .foto-in img{animation:foto-persona 1s cubic-bezier(.2,.8,.2,1) .65s both}
+  @keyframes foto-riquadro{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes foto-persona{from{opacity:0;translate:0 14%}to{opacity:1;translate:0 0}}
+}
+
+/* Cosa faccio: stesso impianto di "I miei lavori" (titolo al centro, 4 riquadri in fila, pulsante sotto) */
+.cosa-pagina .servizi{width:100%;max-width:900px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:700px){.cosa-pagina .servizi{grid-template-columns:1fr;max-width:420px}}
+
+/* Cosa faccio: riquadri rettangolari in verticale */
+.cosa-pagina .servizi{max-width:960px;gap:16px}
+.cosa-pagina .servizio{aspect-ratio:3/4;padding:22px;gap:16px;grid-template-rows:auto 1fr}
+.cosa-pagina .servizio h2{font-size:19px}
+.cosa-pagina .servizio p{font-size:14px;line-height:1.5}
+@media (max-width:700px){.cosa-pagina .servizio{aspect-ratio:auto;grid-template-rows:none}}
+
+
+/* logo: in tutte le pagine c'e' solo il monogramma, in alto al centro.
+   Nella home, durante l'apertura, sotto al monogramma compare per un attimo la scritta (poi sparisce). */
+.logo{display:flex;flex-direction:column;align-items:center;gap:calc(var(--fs) * .7);width:calc(var(--fs) * 7)}
+.logo.intro{width:calc(var(--fs) * 10.4)}
+.logo .mono{width:calc(var(--fs) * 7);height:auto}
+.logo.intro .mono{width:calc(var(--fs) * 4.54)}
+.logo .nome{display:none;width:calc(var(--fs) * 10.4);height:auto;overflow:visible;fill:currentColor}
+.logo .nome .s{fill:var(--vino-rosso)}
+.logo.intro .nome{display:block}
+.logo.nome-via .nome{opacity:0;transition:opacity .3s ease}
+.js .logo .nome .l,.js .logo .nome .s{opacity:0}
+.js .logo.scrive .nome .l{animation:nome-lettera .55s cubic-bezier(.16,1,.3,1) calc(.15s + var(--i) * .045s) forwards}
+.js .logo.scrive .nome .s{animation:nome-lettera .5s cubic-bezier(.16,1,.3,1) calc(.5s + var(--i) * .035s) forwards}
+@keyframes nome-lettera{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+
+/* pagina 404 */
+.nf{min-height:100svh}
+.nf-codice{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(90px,22vw,200px);line-height:.85;letter-spacing:-.05em;color:var(--cipria)}
+.nf h1{font-size:clamp(26px,4.4vw,44px)}
+.nf-testo{margin:0;font-size:clamp(15px,1.6vw,18px);opacity:.8;text-align:center}
+.copy{line-height:1.45}

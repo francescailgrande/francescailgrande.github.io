@@ -1,0 +1,385 @@
+/* Pagine dei singoli lavori (caso studio). Si appoggia a stile.css.
+   I colori del cliente vivono solo dentro i riquadri, il resto della pagina resta panna e bordeaux. */
+
+.caso{
+  --fv-blu:#143B57;--fv-crema:#FBE5C2;--fv-oro:#D7A65C;
+  width:100%;max-width:980px;margin:0 auto;padding-block:150px 120px;
+  display:grid;gap:clamp(40px,6vw,72px);
+}
+.caso>*{min-width:0}
+
+/* ---------- logo del cliente (SVG nel codice) ---------- */
+.fv{display:block;overflow:visible;--fv-ink:var(--fv-blu);--fv-bg:var(--fv-crema)}
+.fv-su-blu{--fv-ink:var(--fv-crema);--fv-bg:var(--fv-blu)}
+.fv-su-crema{--fv-ink:var(--fv-blu);--fv-bg:var(--fv-crema)}
+.fv-su-oro{--fv-ink:var(--fv-blu);--fv-bg:var(--fv-oro)}
+.fv text{fill:var(--fv-ink)}
+.fv-1{font-family:'Raleway',sans-serif;font-size:12px;font-weight:500}
+.fv-14{font-family:'Cinzel',serif;font-size:39.72px;font-weight:700}
+.fv-2,.fv-3,.fv-4,.fv-5,.fv-6,.fv-7{stroke-miterlimit:10}
+.fv-2,.fv-3,.fv-6{fill:none}
+.fv-2,.fv-5{stroke:var(--fv-bg)}
+.fv-2,.fv-6,.fv-7{stroke-width:3px}
+.fv-3{stroke-width:.25px}
+.fv-3,.fv-4,.fv-6,.fv-7{stroke:var(--fv-ink)}
+.fv-4,.fv-5,.fv-7{fill:var(--fv-ink)}
+.fv-5{stroke-width:2px}
+.fv-11{fill:var(--fv-bg)}
+.fv-8{letter-spacing:.53em}.fv-9{letter-spacing:.54em}.fv-10{letter-spacing:.56em}
+.fv-12,.fv-13{letter-spacing:-.02em}.fv-16{letter-spacing:-.01em}
+.fv-15,.fv-17,.fv-18,.fv-19{letter-spacing:0}
+
+/* ---------- testata ---------- */
+.caso-testa{display:grid;gap:14px;justify-items:start}
+.caso-tag{margin:0;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vino);opacity:.7}
+.caso-testa h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,64px);line-height:1;letter-spacing:-.035em;margin:0;color:var(--vino);text-wrap:balance}
+.caso-lead{margin:0;max-width:52ch;font-size:clamp(16px,1.6vw,19px);opacity:.85}
+
+/* ---------- tavola del marchio: tutto in riquadri, tutto legato ---------- */
+.board{display:grid;gap:10px}
+.riga{display:grid;gap:10px}
+.b{border-radius:20px;overflow:hidden;position:relative;margin:0;min-width:0}
+.b-label{
+  position:absolute;top:18px;left:0;right:0;text-align:center;margin:0;
+  font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+}
+.b-img{background:var(--cipria)}
+.b-img img{display:block;width:100%;height:100%;object-fit:cover;transform:translate3d(0,var(--py,0px),0) scale(var(--sc,1))}
+img[data-par]{--sc:1.08}
+
+.b-hero{background:#fff;display:grid;place-items:center;padding:clamp(44px,8vw,84px) 24px}
+.fv-grande{width:min(540px,86%);height:auto;position:relative;z-index:1}
+.fv-scurissimo{--fv-ink:#0A1D30;--fv-bg:#fff}
+.b-hero{overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;pointer-events:none;transform:translate3d(0,var(--py,0px),0) scale(var(--sc,1.08))}
+
+.riga-foto{grid-template-columns:1fr;height:clamp(220px,34vw,380px)}
+
+.riga-versioni{grid-template-columns:1fr 2fr}
+.b-v{display:grid;place-items:center;padding:8%}
+.b-quadro{aspect-ratio:1}
+.b-v-crema{background:var(--fv-crema)}
+.b-v-bianco{background:#fff}
+.b-v-blu{background:var(--fv-blu)}
+.fv-simbolo{width:64%;height:auto}
+.fv-orizz{width:66.3%;height:auto}
+
+.b-palette{background:#fff;padding:clamp(54px,7vw,64px) 24px clamp(26px,4vw,36px);color:var(--fv-blu)}
+.cerchi{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;justify-items:center;text-align:center}
+.cerchi li{display:grid;gap:3px;justify-items:center}
+.cerchi i{width:clamp(64px,9vw,92px);aspect-ratio:1;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(20,59,87,.35);margin-bottom:8px}
+.cerchi b{font-family:'Raleway',sans-serif;font-weight:500;font-size:14px}
+.cerchi span{font-size:12px;letter-spacing:.05em;opacity:.75}
+
+.b-font{background:var(--fv-blu);color:var(--fv-crema);padding:clamp(54px,7vw,64px) clamp(20px,4vw,44px) clamp(28px,4vw,40px)}
+.b-font .b-label{color:var(--fv-crema)}
+.font-coppia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 36px}
+.font-voce{display:flex;align-items:center;gap:clamp(14px,2.5vw,26px)}
+.font-voce .aa{font-size:clamp(64px,10vw,104px);line-height:.9}
+.font-voce div{display:grid;gap:6px;min-width:0}
+.font-voce b{font-size:16px;font-weight:600}
+.font-voce .abc{font-size:11px;line-height:1.5;letter-spacing:.06em;overflow-wrap:anywhere;opacity:.9}
+.font-voce small{font-size:11px;opacity:.7}
+.font-cinzel .aa,.font-cinzel b,.font-cinzel .abc{font-family:'Cinzel',serif;font-weight:700}
+.font-raleway .aa,.font-raleway b,.font-raleway .abc{font-family:'Raleway',sans-serif;font-weight:500}
+
+.riga-mock{
+  grid-template-columns:1fr 2fr;grid-template-rows:minmax(0,1.25fr) minmax(0,1fr);
+  height:clamp(380px,56vw,560px);
+}
+.m-shopper{grid-row:1 / span 2}
+.m-shopper .ph{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);aspect-ratio:732/1100}
+.m-shopper .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* logo a colori sulla busta, opacita' 75% */
+.fv-busta{position:absolute;left:56.4%;top:61%;width:48%;height:auto;transform:translate(-50%,-50%);opacity:.75}
+.m-insegna img{object-position:25% 45%}
+.m-magliette{background:var(--fv-crema);display:grid;place-items:center;padding:14px}
+.m-magliette img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+
+.caso-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+
+/* variante a colori del logo: forte in oro, resto blu */
+.fv-colori{--fv-ink:var(--fv-blu);--fv-bg:var(--fv-crema)}
+.fv-su-bianco{--fv-bg:#fff}
+.fv-colori{--fv-marrone:#5C5D61}
+.fv-colori polygon.fv-7{fill:var(--fv-oro);stroke:var(--fv-oro)}
+.fv-colori polyline.fv-6,.fv-colori line.fv-6,.fv-colori line.fv-3{stroke:var(--fv-oro)}
+.fv-colori g>path.fv-6:first-child{stroke:var(--fv-oro)}          /* cupola tondeggiante della torre */
+.fv-colori .fv-4{fill:var(--fv-oro);stroke:var(--fv-oro)}          /* merli e guglie a destra */
+.fv-colori polygon.fv-5{fill:var(--fv-marrone);stroke:var(--fv-bg)} /* ombra alla base, prima del mare */
+.fv-colori text.fv-1{fill:var(--fv-oro)}
+
+
+@media (max-width:700px){
+  .caso{padding-block:140px 110px}
+  .riga-foto{grid-template-columns:1fr;height:auto}
+  .riga-foto .b-img{aspect-ratio:16/10}
+  .riga-versioni{grid-template-columns:1fr}
+  .b-rett{aspect-ratio:16/10}
+  .cerchi{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .font-coppia{grid-template-columns:1fr}
+  .riga-mock{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;height:auto}
+  .m-shopper{grid-row:auto;aspect-ratio:2/3}
+  .m-insegna{aspect-ratio:2/3}
+  .m-magliette{grid-column:1 / -1;aspect-ratio:16/9}
+}
+
+/* ---------- scrollytelling: gli elementi compaiono man mano che si scorre ---------- */
+@property --sc{syntax:'<number>';inherits:false;initial-value:1}
+.rv-on{--e:cubic-bezier(.22,1,.36,1)}
+.rv-on .rv{
+  transition:opacity .9s var(--e) var(--d,0s),transform 1.1s var(--e) var(--d,0s),clip-path 1.3s var(--e) var(--d,0s),--sc 1.8s var(--e) var(--d,0s);
+}
+/* sale e compare */
+.rv-on .rv-su{opacity:0;transform:translate3d(0,34px,0)}
+/* la scatola si svela dal basso verso l'alto, come l'acqua nel monogramma */
+.rv-on .rv-clip{clip-path:inset(100% 0 0 0 round 20px);opacity:0;transition:clip-path 1.3s var(--e) var(--d,0s),--sc 1.8s var(--e) var(--d,0s),opacity .01s linear var(--d,0s)}
+.rv-on .rv-clip.in{clip-path:inset(0 0 0 0 round 20px);opacity:1}
+.rv-on .rv-clip img{--sc:1.22}
+.rv-on .rv-clip.in img{--sc:1}
+.rv-on .rv-clip.in img[data-par]{--sc:1.08}
+/* logo iniziale: si compone in poco piu' di un secondo (arco disegnato, forte che sale, mare, scritte) */
+.rv-on .rv-logo{--e2:cubic-bezier(.16,1,.3,1)}
+.rv-on .rv-logo g>path.fv-6:not(:first-child){stroke-dasharray:1;stroke-dashoffset:1}
+.rv-on .rv-logo g>*:not(.fv-acqua-g){opacity:0}
+.rv-on .rv-logo g>path.fv-6:not(:first-child){opacity:1}
+.rv-on .rv-logo text{opacity:0}
+.rv-on .rv-logo.in g>path.fv-6:not(:first-child){animation:lg-arco .6s cubic-bezier(.65,0,.35,1) 0s forwards}
+.rv-on .rv-logo.in g>*:not(path.fv-6:not(:first-child)){animation:lg-sale .55s var(--e2) .28s forwards}
+.rv-on .rv-logo.in g>rect.fv-7,.rv-on .rv-logo.in g>rect.fv-6,.rv-on .rv-logo.in g>path.fv-2{animation:lg-mare .6s var(--e2) .42s forwards}
+.rv-on .rv-logo.in text.fv-14{animation:lg-testo .6s var(--e2) .55s forwards}
+.rv-on .rv-logo.in text.fv-1{animation:lg-testo .6s var(--e2) .7s forwards}
+@keyframes lg-arco{0%{stroke-dashoffset:1}99%{stroke-dashoffset:0;stroke-dasharray:1}100%{stroke-dashoffset:0;stroke-dasharray:none}}
+@keyframes lg-sale{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes lg-mare{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+@keyframes lg-testo{from{opacity:0}to{opacity:1}}
+/* piccolo ingrandimento morbido */
+.rv-on .rv-zoom{opacity:0;transform:scale(.88)}
+/* comparsa a molla dei cerchi dei colori */
+.rv-on .rv-pop{opacity:0;transform:scale(.55) translate3d(0,14px,0)}
+.rv-on .rv-pop.in{transition-timing-function:cubic-bezier(.34,1.56,.64,1)}
+/* il logo sulla busta compare per ultimo */
+.rv-on .rv.in{opacity:1}
+.rv-on .rv-su.in,.rv-on .rv-zoom.in,.rv-on .rv-pop.in{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .rv-on .rv{transition:none}
+}
+
+
+/* ================= Ulisse (cooperativa sociale) ================= */
+.caso-ulisse{--u-blu:#1B1473;--u-arancio:#F15A24;--u-oro:#FBB03B;--u-grigio:#F2F2F2}
+.u-logo{display:block;overflow:visible;height:auto;--u-ink:var(--u-blu);--u-acc:var(--u-oro);--u-bg:#fff}
+.u-logo .u1{fill:var(--u-ink)}
+.u-logo .u2{fill:var(--u-ink);stroke:var(--u-bg);stroke-width:.25px;stroke-miterlimit:10}
+.u-logo .u3{fill:var(--u-acc);stroke:var(--u-bg);stroke-width:.25px;stroke-miterlimit:10}
+.u-logo .u4{fill:var(--u-acc)}
+.u-logo g{transform-box:fill-box;transform-origin:center}
+.u-bianco{--u-ink:#fff;--u-acc:#fff;--u-bg:transparent}
+.u-su-blu{--u-ink:#fff;--u-acc:var(--u-oro);--u-bg:var(--u-blu)}
+
+.caso-ulisse .u-grande{width:min(300px,62%);position:relative;z-index:1}
+.u-simbolo{width:64%}
+.b-v-indaco{background:var(--u-blu)}
+.u-orizz{width:62%}
+
+.b-gradiente{
+  min-height:clamp(180px,26vw,280px);display:grid;place-items:center;padding:6%;
+  background:
+    radial-gradient(120% 140% at 0% 0%,#fff 0,rgba(255,255,255,.85) 8%,rgba(255,255,255,0) 42%),
+    radial-gradient(90% 120% at 100% 100%,#002a83 0,rgba(0,42,131,.9) 22%,rgba(0,42,131,0) 62%),
+    linear-gradient(115deg,#f9a44a 0%,#f26a24 48%,#e8501e 100%);
+}
+.u-orizz-b{width:min(420px,70%)}
+
+.riga-coppia{grid-template-columns:1fr 1fr}
+.riga-coppia .b-img{aspect-ratio:1}
+.b-concetto{background:var(--u-blu)}
+.b-fascia{background:var(--u-grigio)}
+.b-caratteri{background:var(--u-grigio)}
+.b-fascia img{aspect-ratio:auto;height:auto}
+.riga-chiusa .b-img{aspect-ratio:auto;height:clamp(240px,36vw,380px)}
+.b-onde .u-simbolo{position:absolute;left:50%;top:50%;width:30%;transform:translate(-50%,-50%);height:auto}
+.u-su-onde{--u-bg:transparent}
+
+/* logo iniziale di Ulisse: l'icona ruota e si apre, poi salgono nome e sottotitolo (circa 1 secondo) */
+.rv-on .rv-ulisse .u-icon{opacity:0;transform:scale(.55) rotate(-40deg)}
+.rv-on .rv-ulisse .u-nome{opacity:0;transform:translateY(10px)}
+.rv-on .rv-ulisse .u-sub{opacity:0;transform:translateY(8px)}
+.rv-on .rv-ulisse.in .u-icon{animation:u-icona .8s cubic-bezier(.16,1,.3,1) 0s forwards}
+.rv-on .rv-ulisse.in .u-nome{animation:u-sale .6s cubic-bezier(.16,1,.3,1) .35s forwards}
+.rv-on .rv-ulisse.in .u-sub{animation:u-sale .6s cubic-bezier(.16,1,.3,1) .55s forwards}
+@keyframes u-icona{from{opacity:0;transform:scale(.55) rotate(-40deg)}to{opacity:1;transform:none}}
+@keyframes u-sale{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+@media (max-width:700px){
+  .riga-coppia{grid-template-columns:1fr}
+  .caso-ulisse .u-grande{width:min(240px,70%)}
+  .u-orizz{width:78%}
+  .u-orizz-b{width:78%}
+  .riga-chiusa .b-img{height:clamp(220px,60vw,320px)}
+  .b-onde .u-simbolo{width:34%}
+}
+
+/* il riquadro con il gradiente e' ora il primo della tavola */
+.caso-ulisse .u-orizz-b{width:min(460px,72%)}
+
+/* Ulisse: fascia dei caratteri in due voci che salgono una dopo l'altra, come nel ristorante */
+.b-caratteri{background:var(--u-grigio);display:grid;grid-template-columns:1fr 1fr;aspect-ratio:1481/220}
+.b-caratteri .voce{background:url(/img/ulisse/caratteri.jpg) no-repeat;background-size:200% 100%}
+.b-caratteri .voce-a{background-position:0 0}
+.b-caratteri .voce-b{background-position:100% 0}
+/* Ulisse: ogni riquadro "scorre" verso l'alto dal basso dentro la sua cornice, come una tenda che si alza */
+.b-img>.cont{position:relative;width:100%;height:100%;background:var(--cipria)}
+.b-concetto>.cont{background:var(--u-blu)}
+.b-fascia>.cont{height:auto;background:var(--u-grigio)}
+.b-fascia>.cont img{display:block}
+.rv-on .rv-sale{background:none}
+.rv-on .rv-sale>.cont{translate:0 101%;transition:translate 1.5s cubic-bezier(.65,0,.2,1) var(--d,0s)}
+.rv-on .rv-sale.in>.cont{translate:0 0}
+.rv-on .rv-sale .cont img{--sc:1.25;transition:--sc 2.2s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+.rv-on .rv-sale.in .cont img{--sc:1}
+.rv-on .rv-sale.in .cont img[data-par]{--sc:1.08}
+
+
+/* ================= Clickly (studio creativo) ================= */
+.caso-clk{--k-blu:#0C2C3D;--k-corallo:#E9504B}
+.clk{display:block;overflow:visible;height:auto;--k-sim:#415360;--k-cur:#101c26;--k-txt:#101c26;--k-sub:#415360}
+.clk .k-sim{fill:var(--k-sim)}
+.clk .k-cur{fill:var(--k-cur)}
+.clk .k-w{fill:var(--k-txt)}
+.clk .k-sub{fill:var(--k-sub)}
+.clk path,.clk g{transform-box:fill-box;transform-origin:center}
+.clk-rosso{--k-sim:var(--k-corallo);--k-cur:#fff}
+
+.b-hero-clk{background:#FFF6E8}
+.clk-grande{width:min(520px,84%)}
+.clk-simbolo{width:56%}
+.riga-clk{grid-template-columns:1fr 1fr}
+.b-concetto-clk{
+  display:grid;align-content:center;justify-items:center;gap:clamp(18px,3vw,28px);text-align:center;
+  padding:clamp(28px,5vw,48px) clamp(20px,4vw,40px);color:#fff;
+  background:linear-gradient(180deg,#E9504B 0%,#8E3A40 52%,#1C2230 100%);
+}
+.k-icone{width:min(300px,86%);height:auto;display:block}
+.b-concetto-clk p{margin:0;font-family:'Poppins',sans-serif;font-size:clamp(12.5px,1.5vw,15px);line-height:1.6;max-width:48ch}
+.b-simbolo-clk{display:grid;place-items:center;padding:8%;background:radial-gradient(120% 130% at 0% 0%,#1D5A85 0%,#0C2C3D 38%,#02060A 100%)}
+
+.caso-clk .cerchi{grid-template-columns:repeat(5,minmax(0,1fr))}
+.caso-clk .b-palette{color:var(--k-blu)}
+.caso-clk .cerchi i{box-shadow:inset 0 0 0 1px rgba(12,44,61,.35)}
+.caso-clk .b-font{background:linear-gradient(100deg,#02060A 0%,#0C2C3D 52%,#1D5A85 100%);color:#fff}
+.caso-clk .b-font .b-label{color:#fff}
+.font-spartan .aa,.font-spartan b,.font-spartan .abc{font-family:'League Spartan',sans-serif;font-weight:700}
+.font-spartan .aa{font-weight:800}
+.font-luxurious .aa,.font-luxurious b,.font-luxurious .abc{font-family:'Luxurious Script',cursive;font-weight:400}
+.font-luxurious .aa{font-size:clamp(84px,13vw,132px)}
+.font-luxurious b{font-size:24px}
+.font-luxurious .abc{font-size:15px;letter-spacing:.02em}
+.b-biglietti{aspect-ratio:810/499;background:#fff}
+.biglietti{display:block;width:100%;height:100%}
+
+/* logo iniziale di Clickly: compare il globo, scatta il cursore, salgono le lettere una dopo l'altra, poi il sottotitolo */
+.rv-on .rv-clk .k-simg{opacity:0;scale:.82}
+.rv-on .rv-clk .k-cur{opacity:0}
+.rv-on .rv-clk .k-w{opacity:0}
+.rv-on .rv-clk .k-sub{opacity:0}
+.rv-on .rv-clk.in .k-simg{animation:k-globo .9s cubic-bezier(.16,1,.3,1) 0s forwards}
+.rv-on .rv-clk.in .k-cur{transform-origin:0 0;animation:k-cursore 1s cubic-bezier(.22,1,.36,1) .55s forwards}
+.rv-on .rv-clk.in .k-w{animation:k-lettera .7s cubic-bezier(.16,1,.3,1) calc(.45s + var(--i,0) * .07s) forwards}
+.rv-on .rv-clk.in .k-sub{animation:k-sale .7s cubic-bezier(.16,1,.3,1) 1.1s forwards}
+@keyframes k-globo{from{opacity:0;scale:.82}to{opacity:1;scale:1}}
+@keyframes k-cursore{0%{opacity:0;translate:-46px -46px}55%{opacity:1;translate:0 0;scale:1}72%{scale:.82}100%{opacity:1;translate:0 0;scale:1}}
+@keyframes k-lettera{from{opacity:0;translate:0 34px}to{opacity:1;translate:0 0}}
+@keyframes k-sale{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+
+@media (max-width:700px){
+  .riga-clk{grid-template-columns:1fr}
+  .b-simbolo-clk{aspect-ratio:1}
+  .caso-clk .cerchi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .caso-clk .cerchi li:last-child{grid-column:1 / -1}
+  .clk-grande{width:min(380px,92%)}
+}
+
+/* Ulisse: il logo verticale sta in un riquadro quadrato accanto a quello blu */
+.caso-ulisse .riga-versioni{grid-template-columns:1fr 1fr}
+.u-vert{width:76%}
+.u-vert g[transform]{transform-box:view-box;transform-origin:0 0}
+.b-v-indaco .u-simbolo{width:40%}
+.caso-ulisse .riga-versioni .b-quadro{aspect-ratio:3/2;padding:0}
+.caso-ulisse .u-vert{width:60%}
+
+/* Ulisse: fascia dei caratteri con la stessa aria e altezza di quella del ristorante */
+.caso-ulisse .b-caratteri{aspect-ratio:auto;padding:clamp(22px,4vw,40px) clamp(16px,4.5vw,44px);gap:0 clamp(14px,3.7vw,36px)}
+.caso-ulisse .b-caratteri .voce{aspect-ratio:740.5/220}
+
+/* Ulisse: il pannello "significato del logo" e' fatto di simboli vettoriali e testo vero */
+.b-concetto>.cont{container-type:inline-size}
+.spiega{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4cqw 3cqw;padding:7cqw 6cqw;color:#eceef7;font-family:'Mukta','Mukta Mahee',sans-serif}
+.sp{display:grid;grid-template-rows:auto 1fr;justify-items:center;align-content:start;gap:4.5cqw;text-align:center}
+.sp svg{width:52%;height:auto;display:block;overflow:visible}
+.sp svg path{fill:#e8e9f3}
+.sp svg .d{opacity:.32}
+.sp p{margin:0;font-size:clamp(10.5px,2.55cqw,15px);line-height:1.38;max-width:30ch;text-wrap:balance}
+@media (max-width:700px){
+  .riga-coppia .b-concetto{aspect-ratio:auto}
+  .b-concetto>.cont{height:auto}
+  .spiega{position:static;padding:34px 22px;gap:30px 14px}
+  .sp p{font-size:12.5px;line-height:1.4}
+}
+
+/* Ulisse: i 4 simboli con i testi sono un blocco unico, centrato nel rettangolo blu */
+.spiega{grid-template-columns:repeat(2,minmax(0,40cqw));grid-template-rows:auto auto;place-content:center;align-items:start;gap:8cqw 6cqw;padding:0}
+@media (max-width:700px){.spiega{grid-template-columns:repeat(2,minmax(0,1fr));place-content:normal;padding:34px 22px}}
+
+
+/* ================= Teo Macauda (videomaker) ================= */
+.caso-vm{--vm-arancio:#DA5512;--vm-nero:#050505}
+.b-hero-vm{background:radial-gradient(130% 150% at 0% 100%,#DA5512 0%,#8F360C 30%,#2A1004 58%,#000 82%);padding:clamp(54px,9vw,96px) 24px;color:#fff;overflow:hidden}
+.vm-testa{position:relative;z-index:1;display:grid;justify-items:center;gap:clamp(14px,2.4vw,22px);text-align:center}
+.vm-logo{width:clamp(110px,17vw,170px);height:auto;display:block}
+.vm-logo path{fill:#fff}
+.vm-nome{margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(30px,6.4vw,64px);letter-spacing:-.02em;line-height:1}
+.vm-sotto{margin:0;font-family:'Montserrat',sans-serif;font-weight:300;font-size:clamp(12px,1.9vw,19px);letter-spacing:.06em}
+
+.b-vm{background:var(--vm-nero);color:#fff;padding:clamp(56px,7vw,68px) clamp(22px,5vw,56px) clamp(30px,5vw,48px);font-family:'Montserrat',sans-serif}
+.vm-lab{position:absolute;top:22px;left:clamp(22px,5vw,56px);margin:0;display:flex;align-items:center;gap:12px;font-weight:400;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.vm-lab b{color:var(--vm-arancio);font-weight:700;font-size:15px;letter-spacing:.04em}
+.vm-lab i{width:clamp(36px,6vw,64px);height:2px;background:var(--vm-arancio)}
+.vm-formula{display:flex;align-items:flex-start;justify-content:center;gap:clamp(18px,4vw,40px);margin-bottom:clamp(20px,3vw,30px)}
+.vm-formula>div{display:grid;justify-items:center;gap:12px}
+.vm-formula small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.vm-m{font-weight:300;font-size:clamp(54px,8vw,76px);line-height:1}
+.vm-cam{width:clamp(66px,9vw,88px);height:auto;color:#fff;margin-top:clamp(6px,1vw,10px)}
+.vm-piu{font-weight:300;font-size:clamp(34px,5vw,46px);line-height:1;margin-top:clamp(8px,1.2vw,14px)}
+.vm-testo{margin:0 auto;max-width:56ch;text-align:center;font-weight:400;font-size:clamp(13px,1.5vw,15.5px);line-height:1.65;opacity:.92}
+.caso-vm .font-voce .aa{font-family:'Montserrat',sans-serif}
+.font-mont-b .aa,.font-mont-b b,.font-mont-b .abc{font-family:'Montserrat',sans-serif;font-weight:800}
+.font-mont-b b{font-weight:700}
+.font-mont-b .abc{font-weight:700}
+.font-mont-r .aa,.font-mont-r b,.font-mont-r .abc{font-family:'Montserrat',sans-serif;font-weight:400}
+.font-mont-r .aa{font-weight:300}
+.caso-vm .font-voce .abc{opacity:.95}
+.caso-vm .cerchi{grid-template-columns:repeat(2,minmax(0,150px));justify-content:center;gap:clamp(30px,8vw,80px)}
+.caso-vm .cerchi b,.caso-vm .cerchi span{color:#fff}
+.caso-vm .cerchi i{box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+.caso-vm .cerchi li:not(.vm-nero) i{box-shadow:none}
+.b-vm-foto{aspect-ratio:16/10;background:#000}
+.b-vm-foto img{object-position:68% 64%}
+@media (max-width:700px){
+  .b-vm-foto{aspect-ratio:4/5}
+  .b-vm-foto img{object-position:72% 70%}
+  .caso-vm .cerchi{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+.vm-sotto{margin-top:calc(-1 * clamp(8px,1.5vw,14px))}
+
+/* Teo Macauda: riquadri a colori alternati (arancione, chiaro, nero) invece di tutti neri */
+.b-vm-arancio{background:var(--vm-arancio);color:#0a0a0a}
+.b-vm-arancio .vm-lab b{color:#0a0a0a}
+.b-vm-arancio .vm-lab i{background:#0a0a0a}
+.b-vm-arancio .vm-cam{color:#0a0a0a}
+.b-vm-arancio .vm-testo{opacity:1}
+.b-vm-chiaro{background:#fff;color:#0a0a0a}
+.b-vm-chiaro .vm-lab b{color:var(--vm-arancio)}
+.b-vm-chiaro .vm-cam{color:#0a0a0a}
