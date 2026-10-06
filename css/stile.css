@@ -136,14 +136,6 @@ a{color:inherit}
   --gap:clamp(28px,6vw,72px);
   display:grid;grid-template-columns:repeat(2,calc((100% - var(--gap)) * 5 / 11));justify-content:center;gap:var(--gap);align-items:center;
 }
-.foto{
-  aspect-ratio:4/5;border-radius:22px;position:relative;overflow:hidden;display:grid;place-items:end start;padding:18px;
-  background:
-    repeating-linear-gradient(90deg,transparent 0 23px,rgba(58,15,30,.16) 23px 25px),
-    repeating-linear-gradient(0deg,transparent 0 23px,rgba(58,15,30,.16) 23px 25px),
-    var(--cipria);
-}
-.foto span{font-size:13px;font-weight:700;color:var(--vino);background:var(--panna);padding:8px 14px;border-radius:999px}
 .testo{display:grid;gap:14px;justify-items:start;min-width:0;container-type:inline-size}
 .testo h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,9.2cqw,44px);line-height:1;white-space:nowrap;letter-spacing:-.035em;margin:0;color:var(--vino);text-wrap:balance}
 .testo .lead{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.4vw,26px);margin:0;color:var(--vino);opacity:.8}
@@ -165,7 +157,7 @@ a{color:inherit}
 .btn-bordo{box-shadow:inset 0 0 0 1.5px var(--vino);color:var(--vino)}
 .btn-pieno:hover,.btn-bordo:hover{transform:translateY(-2px)}
 @media (prefers-reduced-motion:no-preference){
-  .chisono .foto,.chisono .testo>*{animation:sale .7s cubic-bezier(.2,.8,.2,1) both}
+  .chisono .testo>*{animation:sale .7s cubic-bezier(.2,.8,.2,1) both}
   .testo>*:nth-child(2){animation-delay:.06s}.testo>*:nth-child(3){animation-delay:.12s}.testo>*:nth-child(4){animation-delay:.18s}.testo>*:nth-child(5){animation-delay:.24s}.testo>*:nth-child(6){animation-delay:.3s}
   @keyframes sale{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 }
@@ -290,7 +282,6 @@ a{color:inherit}
   .servizio{grid-template-columns:42px 1fr;align-items:start;gap:14px}
   .intro h1{font-size:44px}
   .chisono{grid-template-columns:1fr;padding-block:140px 120px}
-  .foto{max-width:320px}
   .azioni{justify-content:center;width:100%;gap:8px}
   .btn-pieno,.btn-bordo{font-size:12.5px;padding:10px 11px;gap:6px}
   .ico-carrello{width:26px;height:19px}
@@ -393,18 +384,7 @@ html.menu-aperto{overflow:hidden}
 @media (max-width:700px){.menu-indietro{width:44px;height:44px;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left))}}
 
 
-/* foto di Francesca: sta tutta dentro il riquadro, appoggiata in basso */
-.foto{container-type:inline-size}
-.foto-in{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
-.foto img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 61%;transform:translateY(3cqw) scale(1.14);transform-origin:50% 100%}
 
-/* Chi sono: prima compare il riquadro della foto, poi Francesca sale dentro al riquadro */
-@media (prefers-reduced-motion:no-preference){
-  .chisono .foto{animation:foto-riquadro .8s cubic-bezier(.2,.8,.2,1) both}
-  .chisono .foto-in img{animation:foto-persona 1s cubic-bezier(.2,.8,.2,1) .65s both}
-  @keyframes foto-riquadro{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-  @keyframes foto-persona{from{opacity:0;translate:0 14%}to{opacity:1;translate:0 0}}
-}
 
 /* Cosa faccio: stesso impianto di "I miei lavori" (titolo al centro, 4 riquadri in fila, pulsante sotto) */
 .cosa-pagina .servizi{width:100%;max-width:900px;grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -439,3 +419,12 @@ html.menu-aperto{overflow:hidden}
 .nf h1{font-size:clamp(26px,4.4vw,44px)}
 .nf-testo{margin:0;font-size:clamp(15px,1.6vw,18px);opacity:.8;text-align:center}
 .copy{line-height:1.45}
+
+/* Chi sono: una sola colonna centrata */
+.chisono{display:grid;grid-template-columns:minmax(0,640px);justify-content:center;align-content:center;min-height:100svh;padding-block:150px}
+.chisono .testo{justify-items:center;text-align:center}
+.chisono .testo h1{font-size:clamp(34px,7vw,60px);white-space:normal}
+.chisono .testo p{max-width:54ch}
+.chisono .scheda{justify-items:center}
+.chisono .tag,.chisono .azioni{justify-content:center}
+@media (max-width:700px){.chisono{padding-block:140px 120px;min-height:0}}
