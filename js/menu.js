@@ -3,7 +3,7 @@
   if (location.pathname.replace(/index\.html$/, '').replace(/\/+$/, '') === '') return;   // nella home il menu non serve
   var p = location.pathname.replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
   var VOCI = {
-    carrello: { href: '/', testo: 'Torna al carrello' },
+    carrello: { href: '/', testo: 'Torna alla home' },
     lavori: { href: '/lavori', testo: 'I miei lavori' },
     tutti: { href: '/lavori', testo: 'Tutti i lavori' },
     chi: { href: '/chisono', testo: 'Chi sono' },
@@ -11,10 +11,10 @@
   };
   var elenco;
   if (p === '/') elenco = ['lavori', 'chi', 'cosa'];
-  else if (p === '/chisono') elenco = ['carrello', 'lavori', 'cosa'];
-  else if (p === '/cosafaccio') elenco = ['carrello', 'lavori', 'chi'];
-  else if (p === '/lavori') elenco = ['carrello', 'chi', 'cosa'];
-  else elenco = ['carrello', 'tutti', 'chi', 'cosa'];
+  else if (p === '/chisono') elenco = ['home', 'lavori', 'cosa'];
+  else if (p === '/cosafaccio') elenco = ['home', 'lavori', 'chi'];
+  else if (p === '/lavori') elenco = ['home', 'chi', 'cosa'];
+  else elenco = ['home', 'tutti', 'chi', 'cosa'];
 
   var FRECCIA = '<svg class="menu-freccia" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
