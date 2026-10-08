@@ -225,10 +225,6 @@ img[data-par]{--sc:1.08}
 .caso-ulisse .u-orizz-b{width:min(460px,72%)}
 
 /* Ulisse: fascia dei caratteri in due voci che salgono una dopo l'altra, come nel ristorante */
-.b-caratteri{background:var(--u-grigio);display:grid;grid-template-columns:1fr 1fr;aspect-ratio:1481/220}
-.b-caratteri .voce{background:url(/img/ulisse/caratteri.jpg) no-repeat;background-size:200% 100%}
-.b-caratteri .voce-a{background-position:0 0}
-.b-caratteri .voce-b{background-position:100% 0}
 /* Ulisse: ogni riquadro "scorre" verso l'alto dal basso dentro la sua cornice, come una tenda che si alza */
 .b-img>.cont{position:relative;width:100%;height:100%;background:var(--cipria)}
 .b-concetto>.cont{background:var(--u-blu)}
@@ -311,8 +307,7 @@ img[data-par]{--sc:1.08}
 
 /* Ulisse: fascia dei caratteri con la stessa aria e altezza di quella del ristorante */
 .caso-ulisse .b-caratteri{aspect-ratio:auto;padding:clamp(22px,4vw,40px) clamp(16px,4.5vw,44px);gap:0 clamp(14px,3.7vw,36px)}
-.caso-ulisse .b-caratteri .voce{aspect-ratio:740.5/220}
-
+.caso-ulisse 
 /* Ulisse: il pannello "significato del logo" e' fatto di simboli vettoriali e testo vero */
 .b-concetto>.cont{container-type:inline-size}
 .spiega{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4cqw 3cqw;padding:7cqw 6cqw;color:#eceef7;font-family:'Mukta','Mukta Mahee',sans-serif}
@@ -384,19 +379,37 @@ img[data-par]{--sc:1.08}
 .b-vm-chiaro .vm-lab b{color:var(--vm-arancio)}
 .b-vm-chiaro .vm-cam{color:#0a0a0a}
 
-/* caratteri: ogni gruppo di lettere resta su una sola riga (maiuscole, minuscole, numeri) */
-.font-voce .abc{white-space:nowrap;overflow-wrap:normal}
-.font-luxurious>div{gap:14px}
+
+/* Ulisse da telefono: il motivo ripetuto e' piu' alto, cosi' i simboli si vedono meglio */
 @media (max-width:700px){
-  .font-voce{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:12px;align-items:center}
-  .font-voce>div{display:contents}
-  .font-voce .aa{grid-column:1;grid-row:1}
-  .font-voce b{grid-column:2;grid-row:1}
-  .font-voce .abc{grid-column:1 / -1;grid-row:2;font-size:clamp(9px,2.8vw,11.5px)}
-  .font-voce small{grid-column:1 / -1;grid-row:3}
-  .font-luxurious .abc{font-size:clamp(11px,3.4vw,14px)}
+  .b-fascia>.cont{aspect-ratio:3.3/1}
+  .b-fascia>.cont img{aspect-ratio:auto;width:100%;height:100%;object-fit:cover}
 }
 
-.b-vm-mock{aspect-ratio:3/2;background:#050505}
-.b-vm-mock img{object-position:50% 50%}
-.b-fascia>.cont img{aspect-ratio:1481/222;width:100%;height:auto}
+/* Ulisse: motivo ripetuto in vettoriale, con la sfumatura intera visibile (dal bianco/giallino all'azzurro) a qualsiasi larghezza */
+.b-fascia>.cont{aspect-ratio:1481/222;background:none}
+.b-fascia .fascia-v{display:block;width:100%;height:100%}
+@media (max-width:700px){.b-fascia>.cont{aspect-ratio:2.4/1}}
+
+/* Tipografia di ogni lavoro: "Aa" a sinistra; a destra il nome e sotto le lettere.
+   Maiuscole, minuscole e numeri stanno ciascuno su una sola riga, anche da telefono (la grandezza si adatta alla larghezza). */
+.font-voce{container-type:inline-size}
+.font-voce .abc{white-space:nowrap;overflow-wrap:normal}
+.font-luxurious>div{gap:14px}
+.font-myriad .aa,.font-myriad b,.font-myriad .abc{font-family:'Source Sans 3','Myriad Pro',sans-serif;font-weight:400}
+.font-myriad b{font-weight:700}
+.font-mukta .aa,.font-mukta b,.font-mukta .abc{font-family:'Mukta','Mukta Mahee',sans-serif;font-weight:400}
+.font-mukta b{font-weight:700}
+@media (max-width:700px){
+  .font-voce{gap:3cqw}
+  .font-voce .aa{font-size:clamp(40px,16cqw,64px)}
+  .font-voce b{font-size:clamp(13px,4.4cqw,16px)}
+  .font-voce .abc{font-size:min(12.5px,calc((100cqw - 19cqw) / 22));letter-spacing:.03em}
+  .font-luxurious .aa{font-size:clamp(48px,18cqw,76px)}
+  .font-luxurious .abc{font-size:min(14px,calc((100cqw - 28cqw) / 18.8))}
+  .font-voce small{font-size:10px}
+}
+/* Ulisse: la tipografia e' ora testo vero, con lo stesso impianto degli altri lavori */
+.caso-ulisse .b-caratteri{display:block;aspect-ratio:auto;background:var(--u-grigio);color:var(--u-blu);padding:clamp(54px,7vw,64px) clamp(20px,4vw,44px) clamp(28px,4vw,40px)}
+.caso-ulisse .b-caratteri .b-label{color:var(--u-blu)}
+@media (max-width:700px){.caso-ulisse .font-voce .abc{font-size:min(14px,calc((100cqw - 19cqw) / 18))}}
